@@ -11,6 +11,19 @@ async function doLogout() {
 function addCategoryRow(category = "", expected = "", actual = "") {
   // TODO: Create a row with inputs for category name, expected amount, actual amount
   // and a remove button. Append it to the categories container.
+  document.getElementById("categories-container").innerHTML+=`
+      <div class="category-row">
+            <div>
+              <label for="category-name-1">${category}</label>
+            </div>
+            <div>
+              <label for="expected-1">${expected}</label>
+            </div>
+            <div>
+              <label for="actual-1">${actual}</label>
+            </div>
+    </div>
+  `
 }
 
 // Reads all category rows from the DOM and returns them as an array
