@@ -9,7 +9,7 @@
   <nav>
     <h1>NottsBank Budgeting Tracker</h1>
     <div class="nav-right">
-      <a href="index.html" class="logout-btn">Back to Dashboard</a>
+      <a href="index.html" class="logout-btn">Back to Home!</a>
       <button type="button" class="logout-btn" onclick="doLogout()">Logout</button>
     </div>
   </nav>
@@ -46,7 +46,7 @@
       <!-- TODO: Add a button to add more category rows -->
        <button type="button" class="add-category-btn" onclick="addCategoryRow()">Add Category Rows!</button>
       <!-- TODO: Add a Save Budget button that calls submitBudget() -->
-       <button type="button">Save Budget!</button>
+       <button type="button" class="save-budget-btn" onclick="submitBudget()">Save Budget!</button>
     </section>
 
     <!-- RESULTS SECTION — shown after successful submission -->
@@ -64,7 +64,7 @@
         <label for="suggestion">suggestion2</label>
         <label for="suggestion">suggestion3</label>
       <!-- TODO: Add a Back to Dashboard button -->
-       <button type="button">Back to dashboard!</button>
+       <a href="index.html" class="logout-btn">Back to Dashboard</a>
     </section>
 
   </main>
