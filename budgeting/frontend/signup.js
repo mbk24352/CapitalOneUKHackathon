@@ -32,3 +32,4 @@ catch (error) {
     showError("An error occurred. Please try again.");
   }
 document.addEventListener("keydown", (e) => { if (e.key === "Enter") doSignup(); });
+}
