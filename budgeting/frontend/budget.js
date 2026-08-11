@@ -40,6 +40,25 @@ async function submitBudget() {
 
   // TODO: Validate inputs, then POST or PATCH to /budgets (or /budgets/<id> if editing).
   // On success hide #form-section, show #results-section and call showResults()
+  try{
+    const response = await fetch(`${API_BASE}/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ 
+        //replace w variables later
+        //do tests for inputs
+      }),
+    });
+    const data = await response.json();
+    if (response.ok) {
+      window.location.href = "l";
+    } else {
+      showError(data.message || "Budget failed. Please try again.");
+    }
+  } 
+catch (error) {
+    showError("An error occurred. Please try again.");
+  }
 }
 
 // Renders the summary box, per-category table and suggestions list after a save
