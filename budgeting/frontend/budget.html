@@ -8,24 +8,63 @@
 <body>
   <nav>
     <h1>NottsBank Budgeting Tracker</h1>
-    <!-- TODO: Add a back link to index.html and a logout button -->
+    <div class="nav-right">
+      <a href="index.html" class="logout-btn">Back to Dashboard</a>
+      <button type="button" class="logout-btn" onclick="doLogout()">Logout</button>
+    </div>
   </nav>
   <main>
-
-    <!-- FORM SECTION — shown initially -->
     <section id="form-section">
-      <!-- TODO: Add inputs for monthly income and carryover -->
-      <!-- TODO: Add a section for outgoing categories (category name, expected, actual) -->
+      <h3>Budget Inputs</h3>
+      <div class="form-group">
+        <label for="monthly-income">Monthly income</label>
+        <input id="monthly-income" type="number">
+      </div>
+      <div class="form-group">
+        <label for="carryover">Carryover</label>
+        <input id="carryover" type="number">
+      </div>
+      <section id="outgoing-categories">
+        <h3>Outgoing Categories</h3>
+        <div id="categories-container">
+          <div class="category-row">
+            <div>
+              <label for="category-name-1">Category name</label>
+              <input id="category-name-1" class="category-name" type="text" placeholder="e.g. Rent">
+            </div>
+            <div>
+              <label for="expected-1">Expected</label>
+              <input id="expected-1" class="expected-amount" type="number" min="0" step="0.01">
+            </div>
+            <div>
+              <label for="actual-1">Actual</label>
+              <input id="actual-1" class="actual-amount" type="number" min="0" step="0.01">
+            </div>
+          </div>
+        </div>
+      </section>
       <!-- TODO: Add a button to add more category rows -->
+       <button type="button">Add Category Rows!</button>
       <!-- TODO: Add a Save Budget button that calls submitBudget() -->
+       <button type="button">Save Budget!</button>
     </section>
 
     <!-- RESULTS SECTION — shown after successful submission -->
     <section id="results-section" style="display:none;">
       <!-- TODO: Show a summary of the budget (total expected, total actual, remaining) -->
+       <h3>Budget</h3>
+        <label for="total-expected">Total Expected: </label>
+        <label for="total-actual">Total Actual: </label>
+        <label for="remaining">Remaining: </label>
       <!-- TODO: Show a per-category breakdown table -->
       <!-- TODO: Show the suggestions list -->
+       <section id="suggestions-list">
+        <h3>Suggestions</h3>
+        <label for="suggestion">suggestion1</label>
+        <label for="suggestion">suggestion2</label>
+        <label for="suggestion">suggestion3</label>
       <!-- TODO: Add a Back to Dashboard button -->
+       <button type="button">Back to dashboard!</button>
     </section>
 
   </main>
