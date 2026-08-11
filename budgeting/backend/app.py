@@ -258,7 +258,11 @@ def customer():
         return jsonify({"error": "Not logged in"}), 401
 
     # TODO: fetch the user using find_user_by_id and return their name and email
-    pass
+    user = find_user_by_id(user_id)
+    if not user:
+        return jsonify({"error": "User not found"}), 404
+
+    return jsonify({"name": user["name"], "email": user["email"]}), 200
 
 
 @app.route("/budgets", methods=["GET"])
@@ -270,6 +274,7 @@ def list_budgets():
     # TODO: fetch all budgets for this user and return them as a list. For each
     # budget also include total_outgoings (total actual spend) and spend_percentage
     # = (total_outgoings / (monthly_income + carryover)) * 100
+
     pass
 
 
@@ -306,6 +311,7 @@ def edit_budget(budget_id):
         return jsonify({"error": "Not logged in"}), 401
 
     # TODO: validate inputs, update the budget, return updated summary and suggestions
+    
     pass
 
 
