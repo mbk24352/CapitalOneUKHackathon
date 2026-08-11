@@ -4,5 +4,5 @@
 |---|---|
 | Particpant Name | Contributions in team |
 |  Snigdha Tiwari|  |
-|  |  |
+|  Muskan Khaled |signup.html, signup.js  |
 |  |  |
