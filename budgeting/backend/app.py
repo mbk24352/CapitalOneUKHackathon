@@ -108,30 +108,73 @@ def find_user_by_id(user_id):
 
 def get_budgets_for_user(user_id):
     # TODO: read budgets.csv and return all rows where user_id matches
-    pass
+    budgets = _read_csv("budgets.csv")
+    return [budget for budget in budgets if budget["user_id"] == str(user_id)]
+
 
 def get_budget_by_id(budget_id):
     # TODO: read budgets.csv and return the row where id matches, or None
-    pass
+    budgets = _read_csv("budgets.csv")
+    for budget in budgets:
+        if budget["id"] == str(budget_id):
+            return budget
+    return None
 
 def get_categories_for_budget(budget_id):
     # TODO: read categories.csv and return all rows where budget_id matches
-    pass
+    categories = _read_csv("categories.csv")
+    return [cat for cat in categories if cat["budget_id"] == str(budget_id)]
+
+
 
 def get_latest_budget(user_id):
     # TODO: get all budgets for this user and return the most recently created, or None
-    pass
+    budgets = get_budgets_for_user(user_id)
+    if not budgets:
+        return None
+    budgets.sort(key=lambda b: b.get("created_at", ""), reverse=True)
+    return budgets[0]
+
 
 def save_budget(user_id, monthly_income, carryover, categories):
     # TODO: append a new row to budgets.csv and save categories, return the new id
-    pass
+    budgets = _read_csv("budgets.csv")
+    new_id = _next_id(budgets) if budgets else 1
+    new_budget = {
+        "id": new_id,
+        "user_id": user_id,
+        "monthly_income": f"{float(monthly_income):.2f}",
+        "carryover": f"{float(carryover):.2f}",
+        "created_at": date.today().isoformat()
+    }
+    budgets.append(new_budget)
+    _write_csv("budgets.csv", budgets, ["id", "user_id", "monthly_income", "carryover", "created_at"])
+    _save_categories(new_id, categories)    
+
+    return new_id
 
 def update_budget(budget_id, monthly_income, carryover, categories):
-    # TODO: update the matching row in budgets.csv, replace its categories
+    # TODO: update the matching row in budgets.csv, replace its categories in categories.csv
+    budgets = _read_csv("budgets.csv")
+    for budget in budgets:
+        if budget["id"] == str(budget_id):
+            budget["monthly_income"] = f"{float(monthly_income):.2f}"
+            budget["carryover"] = f"{float(carryover):.2f}"
+            break
+    _write_csv("budgets.csv", budgets, ["id", "user_id", "monthly_income", "carryover", "created_at"])
+    _save_categories(budget_id, categories)
+
     pass
 
 def delete_budget(budget_id):
     # TODO: remove the budget row from budgets.csv and its categories from categories.csv
+    budgets = _read_csv("budgets.csv")
+    budgets = [b for b in budgets if b["id"] != str(budget_id)]
+    _write_csv("budgets.csv", budgets, ["id", "user_id", "monthly_income", "carryover", "created_at"])
+    categories = _read_csv("categories.csv")
+    categories = [c for c in categories if c["budget_id"] != str(budget_id)]
+    _write_csv("categories.csv", categories, ["id", "budget_id", "category", "expected_amount", "actual_amount"])
+
     pass
 
 def register_user(username, password, name, email):
