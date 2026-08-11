@@ -12,8 +12,29 @@
       <h2>Create your account</h2>
       <!-- TODO: Add inputs for name, email, username and password.
            Hint: use login.html as a reference for the markup/classes to reuse. -->
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type ="text" id="name" placeholder="Your full name" autocomplete="name"> 
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="you@example.com" autocomplete="email">
+      </div>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="e.g. alice" autocomplete="username">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Choose a password" autocomplete="new-password">
+      </div>
       <!-- TODO: Add a "Sign Up" button that calls doSignup() -->
+      <button onclick = "doSignup()">Sign Up</button>
+      <p class="error-msg" id="signup-error"></p>
       <!-- TODO: Add a link back to login.html for existing users -->
+      <div class ="login-link">
+        Already have an account? <a href="login.html">Log in</a>
+      </div>
     </div>
   </div>
   <script src="signup.js"></script>
