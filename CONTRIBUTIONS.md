@@ -2,8 +2,7 @@
 
 | Name | Contributions |
 |---|---|
-| Participant Name | Contributions in team |
-| Snigdha Tiwari | frontend, budget |
-|  |  |
+| Particpant Name | Contributions in team |
+|  Snigdha Tiwari|  |
 |  |  |
 |  |  |

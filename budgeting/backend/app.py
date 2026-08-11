@@ -164,7 +164,7 @@ def update_budget(budget_id, monthly_income, carryover, categories):
     _write_csv("budgets.csv", budgets, ["id", "user_id", "monthly_income", "carryover", "created_at"])
     _save_categories(budget_id, categories)
 
-    pass
+    return True
 
 def delete_budget(budget_id):
     # TODO: remove the budget row from budgets.csv and its categories from categories.csv
@@ -174,12 +174,23 @@ def delete_budget(budget_id):
     categories = _read_csv("categories.csv")
     categories = [c for c in categories if c["budget_id"] != str(budget_id)]
     _write_csv("categories.csv", categories, ["id", "budget_id", "category", "expected_amount", "actual_amount"])
-
-    pass
+    return True
 
 def register_user(username, password, name, email):
     # TODO: check username not already taken, append new user to users.csv, return True/False
-    pass
+    users = _read_csv("users.csv")
+    if any(u["username"] == username for u in users):
+        return False
+    new_user = {
+        "id": _next_id(users) if users else 1,
+        "username": username,
+        "password": password,
+        "name": name,
+        "email": email
+    }
+    users.append(new_user)
+    _write_csv("users.csv", users, ["id", "username", "password", "name", "email"])
+    return True
 
 def _save_categories(budget_id, categories):
     all_cats = _read_csv("categories.csv")
@@ -247,7 +258,11 @@ def customer():
         return jsonify({"error": "Not logged in"}), 401
 
     # TODO: fetch the user using find_user_by_id and return their name and email
-    pass
+    user = find_user_by_id(user_id)
+    if not user:
+        return jsonify({"error": "User not found"}), 404
+
+    return jsonify({"name": user["name"], "email": user["email"]}), 200
 
 
 @app.route("/budgets", methods=["GET"])
@@ -259,6 +274,7 @@ def list_budgets():
     # TODO: fetch all budgets for this user and return them as a list. For each
     # budget also include total_outgoings (total actual spend) and spend_percentage
     # = (total_outgoings / (monthly_income + carryover)) * 100
+
     pass
 
 
@@ -295,6 +311,7 @@ def edit_budget(budget_id):
         return jsonify({"error": "Not logged in"}), 401
 
     # TODO: validate inputs, update the budget, return updated summary and suggestions
+    
     pass
 
 
