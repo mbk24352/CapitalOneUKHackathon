@@ -3,7 +3,7 @@
 | Name | Contributions |
 |---|---|
 | Particpant Name | Contributions in team |
-| Muskan Khaled | signup.html, signup.js |
+| Sana Irfan | index.html, app.py |
 |  |  |
 |  |  |
 |  |  |
