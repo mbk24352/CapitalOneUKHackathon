@@ -164,7 +164,7 @@ def update_budget(budget_id, monthly_income, carryover, categories):
     _write_csv("budgets.csv", budgets, ["id", "user_id", "monthly_income", "carryover", "created_at"])
     _save_categories(budget_id, categories)
 
-    pass
+    return True
 
 def delete_budget(budget_id):
     # TODO: remove the budget row from budgets.csv and its categories from categories.csv
@@ -174,12 +174,23 @@ def delete_budget(budget_id):
     categories = _read_csv("categories.csv")
     categories = [c for c in categories if c["budget_id"] != str(budget_id)]
     _write_csv("categories.csv", categories, ["id", "budget_id", "category", "expected_amount", "actual_amount"])
-
-    pass
+    return True
 
 def register_user(username, password, name, email):
     # TODO: check username not already taken, append new user to users.csv, return True/False
-    pass
+    users = _read_csv("users.csv")
+    if any(u["username"] == username for u in users):
+        return False
+    new_user = {
+        "id": _next_id(users) if users else 1,
+        "username": username,
+        "password": password,
+        "name": name,
+        "email": email
+    }
+    users.append(new_user)
+    _write_csv("users.csv", users, ["id", "username", "password", "name", "email"])
+    return True
 
 def _save_categories(budget_id, categories):
     all_cats = _read_csv("categories.csv")
