@@ -10,6 +10,9 @@
     <h1>NottsBank Budgeting Tracker</h1>
     <div class="nav-right">
       <!-- TODO: Show welcome message (id="welcome-msg") and a logout button -->
+      <span id="welcome-msg">Welcome!!!</span>
+      <button id="logout-btn">Logout</button>
+       
     </div>
   </nav>
   <main>
@@ -20,8 +23,29 @@
            month/year, income, carryover, outgoings, spend percentage, date created, date edited
            Each row should have Edit and Delete buttons
            Hint: use id="budgets-tbody" for the table body so app.js can populate it -->
+
+    <a href="budget.html" class="btn btn-primary" id="new-budget-btn">New Budget</a>
+
+      <table id="budgets-table">
+        <thead>
+          <tr>
+            <th>Month/Year</th>
+            <th>Income</th>
+            <th>Carryover</th>
+            <th>Outgoings</th>
+            <th>Spend</th>
+            <th>Date Created</th>
+            <th>Date Edited</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="budgets-tbody">
+        </tbody>
+      </table>
+
     </section>
   </main>
   <script src="app.js"></script>
 </body>
 </html>
+
