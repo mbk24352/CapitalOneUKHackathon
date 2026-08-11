@@ -15,6 +15,21 @@ async function doSignup() {
   }
   // TODO: Validate the fields, then POST { name, email, username, password } to /register
   // TODO: Handle success (redirect to login.html) and failure appropriately
-}
-
+  try{
+    const response = await fetch(`${API_BASE}/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, username, password }),
+    });
+    const data = await response.json();
+    if (response.ok) {
+      window.location.href = "login.html";
+    } else {
+      showError(data.message || "Registration failed. Please try again.");
+    }
+  } 
+catch (error) {
+    showError("An error occurred. Please try again.");
+  }
 document.addEventListener("keydown", (e) => { if (e.key === "Enter") doSignup(); });
+}
